@@ -3,9 +3,9 @@ import { styled } from "..";
 export const HomeContainer = styled('main', {
   display: 'flex',
   width: '100%',
-  maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
+  maxWidth: 'calc(100vw - ((100vw - 1400px) / 2))',
   marginLeft: 'auto',
-  minHeight: 656,
+  minHeight: 695,
 })
 
 export const Product = styled('div', {
@@ -52,6 +52,11 @@ export const Product = styled('div', {
       fontWeight: 'bold',
       color: '$green300',
     },
+
+    div: {
+      display: 'flex',
+      flexDirection: 'column',
+    }
   },
 
   '&:hover': {

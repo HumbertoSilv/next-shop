@@ -6,14 +6,14 @@ export const ProductContainer = styled('main', {
   alignItems: 'stretch',
   gap: '4rem',
 
-  maxWidth: 1180,
+  maxWidth: 1400,
   margin: '0 auto',
 })
 
 export const ImageContainer = styled('div', {
   width: '100%',
   maxWidth: 576,
-  height: 656,
+  height: 695,
 
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: 8,
@@ -62,13 +62,19 @@ export const ProductDetails = styled('div', {
     fontWeight: 'bold',
     fontSize: '$md',
 
-    '&:disabled': {
-      opacity: 0.6,
-      cursor: 'not-allowed',
-    },
+    transition: 'all',
+
+    // '&:disabled': {
+    //   opacity: 0.6,
+    //   cursor: 'not-allowed',
+    // },
 
     '&:not(:disabled):hover': {
       backgroundColor: '$green300'
+    },
+    
+    '&:active': {
+      transform: 'scale(1.1)'
     }
   }
 })

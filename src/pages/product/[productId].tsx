@@ -5,8 +5,9 @@ import { stripe } from "../../lib/stripe"
 import Stripe from "stripe"
 import Image from "next/image"
 import axios from "axios"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Head from "next/head"
+import { CartContext } from "../../contexts/CartContext"
 
 interface ProductsProps {
   product: {
@@ -21,25 +22,8 @@ interface ProductsProps {
 
 const Products = ({ product }: ProductsProps) => {
   const { query, isFallback, push } = useRouter()
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
+  const { addToCart } = useContext(CartContext)
 
-  const handleBuyProduct = async () => {
-    try {
-      setIsCreatingCheckoutSession(true)
-
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId
-      })
-
-      const { checkoutUrl } = response.data
-
-      window.location.href = checkoutUrl
-      // push.('/checkout')
-    } catch (error) {
-      setIsCreatingCheckoutSession(false)
-      alert('Falha ao redirecionar ao checkout.')
-    }
-  }
 
   // TODO: Loading component
   if (isFallback) {
@@ -68,8 +52,9 @@ const Products = ({ product }: ProductsProps) => {
           <h1>{product.name}</h1>
           <span>{product.price}</span>
           <p>{product.description}</p>
-          <button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>
-            Comprar agora
+          <button 
+            onClick={() => addToCart(product)}>
+            Colocar na sacola
           </button>
         </ProductDetails>
       </ProductContainer>
